@@ -1,0 +1,81 @@
+{
+      "moduleInfo": {
+        "apiVersion": 0.1,
+        "name": "AnimeFreak",
+        "acronym": "AF",
+        "description": "Scrapes data from AnimeFreak.vip website",
+        "version": 1.0,
+        "language": ["JPN", "ENG"],
+        "baseURL": "https://www.animefreak.vip",
+        "developer": "Meliodas",
+        "developerURL": "n/a",
+        "moduleURL":
+            "n/a",
+        "episodesRequired": false,
+        "searchRequired": true,
+        "dubIdentifier": " Dubbed"
+      },
+      "global": {
+        "headers": {
+          "User-Agent":
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Safari/605.1.15",
+          "Referer": "https://www.animefreak.vip"
+        },
+        "seperator": "+",
+        "noResolve": []
+      },
+      "search": [
+        {
+          "request": {
+            "url": "/browse/?search=<ANIME_NAME>",
+            "method": "GET",
+            "headers": {
+              "User-Agent":
+                  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Safari/605.1.15",
+              "Referer": "https://www.animefreak.vip"
+            },
+            "mainBody": "getElement(\"div.product__page__content\")",
+            "items": {
+              "itemSelector": "getElement(\"div.iepbox\")",
+              "animeName": {
+                "animeName": "getElement(\"div.similardd\").text",
+                "seperator": ""
+              },
+              "animeURL": {
+                "animeURL": "getElement(\"a.an\").params.href",
+                "seperator": "/anime"
+              },
+              "urlExtras": {
+                "animeURL":
+                    "baseURL + '/stream' + animeURL + '-' + 'episode' + '-' + '<EPNUMB>'"
+              }
+            }
+          }
+        }
+      ],
+      "sources": [
+        {
+          "request": {
+            "url": "animeURL",
+            "method": "GET",
+            "headers": {
+              "User-Agent":
+                  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Safari/605.1.15",
+              "Referer": "https://www.animefreak.vip"
+            },
+            "mainBody": "getElement(\"div.notmain.psd\")",
+            "items": {
+              "itemSelector": "getElement(\"select.playerselect2\")",
+              "sourceName": {
+                "sourceName": "getElement(\"option.btn-video.dropdown-item\").text",
+                "seperator": ""
+              },
+              "sourceURL": {
+                "sourceURL": "getElement(\" \").params.value",
+                "seperator": ""
+              }
+            }
+          }
+        }
+      ]
+    }
