@@ -8,9 +8,9 @@
         "language": ["JPN", "ENG"],
         "baseURL": "https://www.animefreak.vip",
         "developer": "Meliodas",
-        "developerURL": "n/a",
+        "developerURL": "null",
         "moduleURL":
-            "n/a",
+            "null",
         "episodesRequired": false,
         "searchRequired": true,
         "dubIdentifier": " Dubbed"
@@ -71,7 +71,7 @@
                 "seperator": ""
               },
               "sourceURL": {
-                "sourceURL": "getElement(\" \").params.value",
+                "sourceURL": "getElement(\"video.jw-video.jw-reset\").params.src",
                 "seperator": ""
               }
             }
